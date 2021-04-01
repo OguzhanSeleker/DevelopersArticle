@@ -1,0 +1,20 @@
+﻿.textarea {
+    border: solid !important;
+    border-width: 1px 1px !important;
+    border-radius: 5px !important;
+    margin-top: 8px;
+}
+
+.txtAreaLabel {
+    width: 102px;
+}
+.categorySelectLabel{
+    width: 350px;
+}
+.developerSelectLabel{
+    width: 130px;
+}
+.Cbl1 {
+    width: 50%;
+    margin-top: 8px;
+}
