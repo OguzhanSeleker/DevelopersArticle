@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DevelopersArticle.BLL.Utilities.Constants;
 
-namespace DevelopersArticle.WebUI.Article
+namespace DevelopersArticle.WebUI
 {
     public partial class AddArticle : BasePage
     {

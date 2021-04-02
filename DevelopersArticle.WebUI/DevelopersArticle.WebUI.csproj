@@ -71,7 +71,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Article\AddArticle.aspx" />
+    <Content Include="AddArticle.aspx" />
+    <Content Include="Article.aspx" />
     <Content Include="Categories.aspx" />
     <Content Include="css\AddArticleCss.css" />
     <Content Include="css\CategoryCss.css" />
@@ -221,12 +222,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article\AddArticle.aspx.cs">
+    <Compile Include="AddArticle.aspx.cs">
       <DependentUpon>AddArticle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Article\AddArticle.aspx.designer.cs">
+    <Compile Include="AddArticle.aspx.designer.cs">
       <DependentUpon>AddArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Article.aspx.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Article.aspx.designer.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
     </Compile>
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -276,7 +284,6 @@
     <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
-    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -287,7 +294,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevelopersArticle.BLL\DevelopersArticle.BLL.csproj">
       <Project>{8f96b213-9237-48b8-9ecd-7f24cc9e976e}</Project>

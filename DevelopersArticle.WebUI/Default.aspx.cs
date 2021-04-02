@@ -13,9 +13,18 @@ namespace DevelopersArticle.WebUI
         {
             if (!IsPostBack)
             {
-
-                //rptArticleList.DataSource = DbManager.GetAllArticles().Data.Where(a => a.ModifiedDate > DateTime.Now.AddDays(-7));
-                //rptArticleList.DataBind();
+                if (Application["Info"] != null)
+                {
+                    InfoLabel(Application["Info"].ToString());
+                }
+                var articles = DbManager.GetAllArticles();
+                if (articles.Success)
+                {
+                    rptArticleList.DataSource = articles.Data;
+                    rptArticleList.DataBind();
+                }
+                 
+                
             }
         }
     }

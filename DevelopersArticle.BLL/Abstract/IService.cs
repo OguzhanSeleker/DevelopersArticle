@@ -24,5 +24,8 @@ namespace DevelopersArticle.BLL
         IResult DeleteDeveloper(int devID);
         IDataResult<List<Article>> GetAllArticles();
         IDataResult<List<Article>> GetArticlesByCategoryId(int categoryId);
+        IDataResult<Article> GetArticleById(int articleId);
+        IResult AddComment(int articleId, int developerId, string commentContent);
+        IResult DeleteArticle(int articleId);
     }
 }

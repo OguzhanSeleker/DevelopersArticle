@@ -7,110 +7,137 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevelopersArticle.WebUI.Article
+namespace DevelopersArticle.WebUI
 {
 
 
-    public partial class AddArticle
+    public partial class Article
     {
 
         /// <summary>
-        /// LblInfo control.
+        /// divArticle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblInfo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divArticle;
 
         /// <summary>
-        /// TxtbxArticleTitle control.
+        /// hfArticleId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtbxArticleTitle;
+        protected global::System.Web.UI.WebControls.HiddenField hfArticleId;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// imgArticleImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Image imgArticleImage;
 
         /// <summary>
-        /// FlUpldImageUpload control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FlUpldImageUpload;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// lbDelArticle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.LinkButton lbDelArticle;
 
         /// <summary>
-        /// TxtAreaArticleContent control.
+        /// hlEditArticle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtAreaArticleContent;
+        protected global::System.Web.UI.WebControls.HyperLink hlEditArticle;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// lblContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.Label lblContent;
 
         /// <summary>
-        /// LbCategories control.
+        /// lblWriterFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LbCategories;
+        protected global::System.Web.UI.WebControls.Label lblWriterFullName;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// lblModifiedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.Label lblModifiedDate;
 
         /// <summary>
-        /// DdlDevelopers control.
+        /// btnShowCommentAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlDevelopers;
+        protected global::System.Web.UI.WebControls.Button btnShowCommentAdd;
 
         /// <summary>
-        /// BtnAddArticle control.
+        /// rptComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAddArticle;
+        protected global::System.Web.UI.WebControls.Repeater rptComments;
+
+        /// <summary>
+        /// txtbxCommentContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbxCommentContent;
+
+        /// <summary>
+        /// ddlCommentWriter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCommentWriter;
+
+        /// <summary>
+        /// btnAddComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddComment;
     }
 }

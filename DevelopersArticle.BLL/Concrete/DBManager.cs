@@ -302,5 +302,70 @@ namespace DevelopersArticle.BLL.Concrete
                 return new ErrorDataResult<List<Article>>(Messages.ErrorGetAllArticles);
             }
         }
+
+        public IDataResult<Article> GetArticleById(int articleId)
+        {
+            try
+            {
+                Article article = DbInstance.GetArticleById(articleId);
+                if (article == null)
+                {
+                    return new ErrorDataResult<Article>(Messages.ErrorGetArticle);
+                }
+                return new SuccessDataResult<Article>(article);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<Article>(Messages.ErrorGetArticle);
+            }
+        }
+
+        public IResult AddComment(int articleId, int developerId, string commentContent)
+        {
+            try
+            {
+                Comment comment = new Comment
+                {
+                    ArticleId = articleId,
+                    WriterId = developerId,
+                    CommentContent = commentContent,
+                    ModifiedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now,
+                };
+
+                DbInstance.AddComment(comment);
+                DbInstance.SaveChanges();
+                return new SuccessResult();
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.ErrorAddComment);
+            }
+
+        }
+
+        public IResult DeleteArticle(int articleId)
+        {
+            var article = DbInstance.GetArticleById(articleId);
+            try
+            {
+                DbInstance.SoftDeleteArticle(article);
+
+                if (article.Comments.Count != 0)
+                {
+                    foreach (var comment in article.Comments)
+                    {
+                        DbInstance.SoftDeleteComment(comment);
+                    }
+
+                }
+                DbInstance.SaveChanges();
+                return new SuccessResult(Messages.SuccessDeleteArticle);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(Messages.ErrorDeleteArticle + e.Message);
+            }
+        }
     }
 }

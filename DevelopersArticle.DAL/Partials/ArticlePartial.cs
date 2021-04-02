@@ -9,7 +9,29 @@ namespace DevelopersArticle.DAL
 {
     public partial class Article
     {
-        
+        public string ImageUrl
+        {
+            get
+            {
+                string image = Convert.ToBase64String(ArticlePictureURL, 0, ArticlePictureURL.Length);
+                return "data:image/png;base64," + image;
+            }
+        }
+        public string MakaleOzet
+        {
+            get
+            {
+                string ozet = "";
+                var listOzet = ArticleContent.Split(' ').Take(25).ToList();
+                foreach (var word in listOzet)
+                {
+                    ozet += word + " ";
+                }
+                ozet += "...";
+                return ozet;
+            }
+
+        }
     }
     public partial class DevelopersArticlesEntities
     {
@@ -21,11 +43,10 @@ namespace DevelopersArticle.DAL
         }
         public void SoftDeleteArticle(Article article)
         {
-            var deletedItem = Set<Article>().Find(article);
+            var deletedItem = Set<Article>().Find(article.ObjectID);
             deletedItem.IsDeleted = true;
             deletedItem.DeletedDate = DateTime.Now;
             deletedItem.ModifiedDate = DateTime.Now;
-            Entry(deletedItem).State = EntityState.Modified;
         }
         public void UpdateArticle(Article article)
         {

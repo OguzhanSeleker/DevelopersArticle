@@ -32,5 +32,10 @@ namespace DevelopersArticle.BLL.Utilities.Constants
         public static string ErrorDeleteDeveloper = "Yazar silinemedi.";
         public static string ErrorDeleteDeveloperDueToArticles = "Yazarın yazısı olduğu için silinemedi.";
         public static string ErrorGetAllArticles = "Yazılar Listelenemdi.";
+        public static string ErrorGetArticle = "Yazı getirilirken bir sıkıntı ile karşılaşıldı.";
+        public static string ErrorAddComment = "Yorum eklenemedi.";
+        public static string SuccessDeleteArticle = "Yazı Başarılı bir şekilde silindi.";
+        public static string ErrorDeleteArticle = "Yazı Silinirken sorun yaşandı Hata : ";
+        public static string CheckNullId = "Yazının Id'si bulunamadı!";
     }
 }

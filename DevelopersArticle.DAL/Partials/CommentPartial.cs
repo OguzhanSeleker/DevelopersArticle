@@ -15,16 +15,14 @@ namespace DevelopersArticle.DAL
     {
         public void AddComment(Comment comment)
         {
-            var addedEntity = Entry(comment);
-            addedEntity.State = EntityState.Added;
+            Comments.Add(comment);
         }
         public void SoftDeleteComment(Comment comment)
         {
-            var deletedItem = Set<Comment>().Find(comment);
+            var deletedItem = Set<Comment>().Find(comment.ObjectID);
             deletedItem.IsDeleted = true;
             deletedItem.DeletedDate = DateTime.Now;
             deletedItem.ModifiedDate = DateTime.Now;
-            Entry(deletedItem).State = EntityState.Modified;
 
         }
         public void UpdateComment(Comment Comment)
