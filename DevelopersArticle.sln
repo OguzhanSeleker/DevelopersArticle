@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopersArticle.DAL", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopersArticle.BLL", "DevelopersArticle.BLL\DevelopersArticle.BLL.csproj", "{8F96B213-9237-48B8-9ECD-7F24CC9E976E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopersArticle.ConsoleTest", "DevelopersArticle.ConsoleTest\DevelopersArticle.ConsoleTest.csproj", "{5FD84533-8235-4664-B27C-21317E04630B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopersArticle.WebUI", "DevelopersArticle.WebUI\DevelopersArticle.WebUI.csproj", "{9C6BDAF5-479D-48B2-AF6C-67C281317D47}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{8F96B213-9237-48B8-9ECD-7F24CC9E976E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F96B213-9237-48B8-9ECD-7F24CC9E976E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F96B213-9237-48B8-9ECD-7F24CC9E976E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FD84533-8235-4664-B27C-21317E04630B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FD84533-8235-4664-B27C-21317E04630B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FD84533-8235-4664-B27C-21317E04630B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FD84533-8235-4664-B27C-21317E04630B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C6BDAF5-479D-48B2-AF6C-67C281317D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C6BDAF5-479D-48B2-AF6C-67C281317D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C6BDAF5-479D-48B2-AF6C-67C281317D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
