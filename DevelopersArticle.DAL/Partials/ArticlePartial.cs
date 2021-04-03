@@ -50,8 +50,14 @@ namespace DevelopersArticle.DAL
         }
         public void UpdateArticle(Article article)
         {
-            var UpdatedEntity = Entry(article);
-            UpdatedEntity.State = EntityState.Modified;
+            var UpdatedEntity = Set<Article>().Find(article.ObjectID);
+            UpdatedEntity.WriterId = article.WriterId;
+            UpdatedEntity.ModifiedDate = DateTime.Now;
+            UpdatedEntity.IsModified = true;
+            UpdatedEntity.ArticleTitle = article.ArticleTitle;
+            UpdatedEntity.ArticlePictureURL = article.ArticlePictureURL;
+            UpdatedEntity.ArticleContent = article.ArticleContent;
+            UpdatedEntity.Categories = article.Categories;
         }
 
         public Article GetArticleById(int articleId)
@@ -61,8 +67,7 @@ namespace DevelopersArticle.DAL
 
         public List<Article> GetArticlesByCategoryId(int categoryId)
         {
-
-            return Categories.Where(c => c.ObjectID == categoryId).SelectMany(a => a.Articles).ToList();
+            return Categories.Where(c => c.ObjectID == categoryId && c.IsDeleted == false).SelectMany(a => a.Articles.Where(d => d.IsDeleted == false)).ToList();
         }
 
         public List<Article> GetAllArticles()

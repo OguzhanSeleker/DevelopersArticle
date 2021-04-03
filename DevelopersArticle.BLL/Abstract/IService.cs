@@ -27,5 +27,8 @@ namespace DevelopersArticle.BLL
         IDataResult<Article> GetArticleById(int articleId);
         IResult AddComment(int articleId, int developerId, string commentContent);
         IResult DeleteArticle(int articleId);
+        IResult UpdateArticle(int articleId, string ArticleTitle, byte[] ImageBytes, string ArticleContent, List<int> CategoryIds, int writerID);
+        IDataResult<Comment> GetCommentById(int commentId);
+        IResult DeleteComment(int commentId);
     }
 }

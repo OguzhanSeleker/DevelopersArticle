@@ -97,5 +97,10 @@ namespace DevelopersArticle.WebUI
             }
 
         }
+
+        protected void BtnAddArticle_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

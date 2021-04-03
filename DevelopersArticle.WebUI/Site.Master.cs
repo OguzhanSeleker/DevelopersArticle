@@ -47,7 +47,7 @@ namespace DevelopersArticle.WebUI
         protected void rpKategori_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int catId = int.Parse((string)(e.CommandArgument));
-            Response.Redirect("Default.aspx?id=" + catId);
+            Response.Redirect("Default.aspx?Category=" + catId);
         }
     }
 }

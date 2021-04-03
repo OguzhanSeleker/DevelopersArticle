@@ -35,7 +35,11 @@ namespace DevelopersArticle.BLL.Utilities.Constants
         public static string ErrorGetArticle = "Yazı getirilirken bir sıkıntı ile karşılaşıldı.";
         public static string ErrorAddComment = "Yorum eklenemedi.";
         public static string SuccessDeleteArticle = "Yazı Başarılı bir şekilde silindi.";
-        public static string ErrorDeleteArticle = "Yazı Silinirken sorun yaşandı Hata : ";
+        public static string ErrorDeleteArticle = "Yazı Silinirken sorun yaşandı. Hata : ";
         public static string CheckNullId = "Yazının Id'si bulunamadı!";
+        public static string EmptyCatArt = "Kategoriye ait yazı bulunmamaktadır.";
+        public static string SuccessUpdateArticle = "Yazı başarılı bir şekilde güncellendi.";
+        public static string ErrorUpdateArticle = "Yazı güncellenemedi. Hata : ";
+        public static string ErrorDeleteComment = "Yorum silinemdi. Hata : ";
     }
 }

@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row card w-50 mx-auto mt-5 p-3v active" id="divArticle" runat="server">
+    <div class="row card w-50 mx-auto mt-5 mb-5 p-3v active" id="divArticle" runat="server">
 
         <div class="card-body">
             <asp:HiddenField ID="hfArticleId" runat="server" />
             <div class="row">
                 <div class="col mb-3">
-                    <asp:Image ID="imgArticleImage" Style="height:18rem;" CssClass="center" runat="server" />
+                    <asp:Image ID="imgArticleImage" Style="height: 18rem;" CssClass="center" runat="server" />
                 </div>
             </div>
             <div class="row">
@@ -49,17 +49,57 @@
             </div>
             <div class="row">
                 <div class="col ml-5">
-                    <asp:Repeater ID="rptComments" runat="server">
+                    <asp:Repeater ID="rptComments" runat="server" OnItemCommand="rptComments_ItemCommand">
                         <ItemTemplate>
                             <hr />
                             <%# Eval("CommentContent") %> --
                             <span class="text-primary"><%# Eval("Developer.FullName") %>.</span>
                             <span class="text-muted"><%# Eval("CreatedDate") %></span>
+                            <asp:LinkButton ID="lbDelComment" CommandName="Delete" CommandArgument='<%# Eval("ObjectID") %>' CssClass="d-inline ml-2" runat="server">
+                    <i class="fas fa-trash"></i>
+                            </asp:LinkButton>
+
+                            <asp:LinkButton ID="lbEditComment" CommandName="Edit" CommandArgument='<%# Eval("ObjectID") %>' CssClass="d-inline ml-2" runat="server" data-bs-toggle="modal" data-bs-target="#EditComment">
+                    <i class="fas fa-edit"></i>
+                            </asp:LinkButton>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="EditComment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col">
+                                <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
+                                <asp:TextBox ID="tbEditContent" CssClass="form-control-sm w-50" runat="server" />
+                            </div>
+                            <div class="col">
+                                <asp:Label CssClass="form-text d-inline" Text="Yorum Sahibi :" runat="server" />
+
+                                <asp:DropDownList ID="ddlModalWriter" runat="server" DataTextField="FullName" DataValueField="ObjectID" CssClass="form-control d-inline w-50">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row mt-3" id="comment" style="display: none;">
+                <hr />
                 <div class="col">
                     <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
                     <asp:TextBox ID="txtbxCommentContent" CssClass="form-control-sm w-50" runat="server" />

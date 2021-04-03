@@ -241,14 +241,31 @@ namespace DevelopersArticle.BLL.Concrete
             try
             {
                 List<Category> categories = new List<Category>();
-                foreach (int catId in categoryIDs)
-                {
-                    Category category = DbInstance.GetCategoryById(catId);
-                    categories.Add(category);
-                }
-                Developer dev = DbInstance.GetDeveloperById(devId);
 
-                dev.Categories = categories;
+                Developer dev = DbInstance.GetDeveloperById(devId);
+                if (dev.Articles.Count != 0)
+                {
+                    foreach (var article in dev.Articles.Where(a => a.IsDeleted == false).ToList())
+                    {
+                        foreach (var artCat in article.Categories)
+                        {
+                            categories.Add(artCat);
+                        } 
+                    }
+                }
+
+                if (categoryIDs.Count != 0)
+                {
+                    foreach (var carId in categoryIDs)
+                    {
+                        categories.Add(DbInstance.GetCategoryById(carId));
+                    }
+                }
+                dev.Categories.Clear();
+                foreach (var newCat in categories)
+                {
+                    dev.Categories.Add(newCat);
+                }
                 dev.FirstName = firstName;
                 dev.UserName = userName;
                 dev.LastName = lastName;
@@ -365,6 +382,59 @@ namespace DevelopersArticle.BLL.Concrete
             catch (Exception e)
             {
                 return new ErrorResult(Messages.ErrorDeleteArticle + e.Message);
+            }
+        }
+
+        public IResult UpdateArticle(int articleId, string ArticleTitle, byte[] ImageBytes, string ArticleContent, List<int> CategoryIds, int writerID)
+        {
+            try
+            {
+                Article article = DbInstance.GetArticleById(articleId);
+                article.ArticleContent = ArticleContent;
+                article.ArticlePictureURL = ImageBytes;
+                article.ArticleTitle = ArticleTitle;
+                article.Categories.Clear();
+                foreach (var item in CategoryIds)
+                {
+                    var cat = DbInstance.GetCategoryById(item);
+                    article.Categories.Add(cat);
+                }
+                article.WriterId = writerID;
+                DbInstance.UpdateArticle(article);
+                DbInstance.SaveChanges();
+                return new SuccessResult(Messages.SuccessUpdateArticle);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(Messages.ErrorUpdateArticle + e.Message);
+            }
+        }
+
+        public IDataResult<Comment> GetCommentById(int commentId)
+        {
+            try
+            {
+                var comment = DbInstance.GetCommentById(commentId);
+                return new SuccessDataResult<Comment>(comment);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<Comment>();
+            }
+        }
+
+        public IResult DeleteComment(int commentId)
+        {
+            try
+            {
+                Comment comment = DbInstance.GetCommentById(commentId);
+                DbInstance.SoftDeleteComment(comment);
+                DbInstance.SaveChanges();
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(Messages.ErrorDeleteComment + e.Message);
             }
         }
     }

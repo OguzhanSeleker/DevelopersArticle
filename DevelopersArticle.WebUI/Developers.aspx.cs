@@ -17,6 +17,7 @@ namespace DevelopersArticle.WebUI
                 if (Application["Info"] != null)
                 {
                     InfoLabel(Application["Info"].ToString());
+                    Application.Clear();
                 }
                 var categories = DbManager.GetCategories();
                 if (categories.Success)
@@ -136,7 +137,7 @@ namespace DevelopersArticle.WebUI
                     //}
                     List<int> allCatIds = (List<int>)DbManager.GetCategories().Data.Select(c => c.ObjectID).ToList();
                     //yazısı olan kategori idler
-                    if (dev.Data.Articles.Count != 0)
+                    if (dev.Data.Articles.Where(s => s.IsDeleted == false).ToList().Count != 0)
                     {
                         List<int> test2 = (List<int>)dev.Data.Articles.SelectMany(a => a.Categories.Select(c => c.ObjectID)).ToList();
                         foreach (int item in test2)
@@ -148,11 +149,12 @@ namespace DevelopersArticle.WebUI
                     LbEditCategories.DataSource = DbManager.GetCategoriesByMultiIds(allCatIds).Data.Select(c => new { c.CategoryName, c.ObjectID});
                     LbEditCategories.DataTextField = "CategoryName";
                     LbEditCategories.DataValueField = "ObjectID";
+                    LbEditCategories.DataBind();
                     foreach (int item in test1)
                     {
-                        LbEditCategories.SelectedValue = item.ToString();
+                        LbEditCategories.Items.FindByValue(item.ToString()).Selected = true;
                     }
-                    LbEditCategories.DataBind();
+                    
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDevModal();", true);
                 }
             }

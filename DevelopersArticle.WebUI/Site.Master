@@ -155,6 +155,9 @@
             function openDevModal() {
                 $('#EditModal2').modal('show');
             }
+            function openEditCommentModal() {
+                $('#EditComment').modal('show');
+            }
         </script>
     </form>
 </body>

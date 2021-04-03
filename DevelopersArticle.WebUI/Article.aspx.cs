@@ -1,10 +1,7 @@
 ﻿using DevelopersArticle.BLL.Utilities.Constants;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DevelopersArticle.WebUI
 {
@@ -26,13 +23,12 @@ namespace DevelopersArticle.WebUI
                         lblWriterFullName.Text = article.Data.Developer.FullName;
                         lblModifiedDate.Text = article.Data.ModifiedDate.ToString();
 
-                        rptComments.DataSource = article.Data.Comments.OrderBy(c => c.ModifiedDate);
+                        rptComments.DataSource = article.Data.Comments.Where(c => c.IsDeleted == false).OrderBy(c => c.ModifiedDate).ToList();
                         rptComments.DataBind();
 
                         var dev = DbManager.GetDevelopers();
                         if (dev.Success)
                         {
-
                             ddlCommentWriter.DataSource = dev.Data.Select(c => new { c.FullName, c.ObjectID });
                             ddlCommentWriter.DataBind();
                         }
@@ -44,11 +40,14 @@ namespace DevelopersArticle.WebUI
                         InfoLabel(Messages.CheckNullId);
                     }
                 }
+                else if (Request.QueryString["Category"] != null)
+                {
+                    var article = DbManager.GetArticlesByCategoryId(int.Parse(Request.QueryString["Category"]));
+                }
                 else
                 {
                     divArticle.Visible = false;
                     InfoLabel(Messages.CheckNullId);
-                  
                 }
             }
         }
@@ -77,6 +76,41 @@ namespace DevelopersArticle.WebUI
             else
             {
                 InfoLabel(deleteArticle.Message);
+            }
+        }
+
+
+        protected void rptComments_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        {
+            int commentId = int.Parse((string)(e.CommandArgument));
+
+            if (e.CommandName == "Edit")
+            {
+                var res = DbManager.GetCommentById(commentId);
+                if (res.Success)
+                {
+                    tbEditContent.Text = res.Data.CommentContent;
+                    var dev = DbManager.GetDevelopers();
+                    if (dev.Success)
+                    {
+                        ddlModalWriter.DataSource = dev.Data.Select(c => new { c.FullName, c.ObjectID });
+                        ddlModalWriter.DataBind();
+                        ddlModalWriter.SelectedValue = res.Data.Developer.ObjectID.ToString();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openEditCommentModal();", true);
+                    }
+                }
+            }
+            else
+            {
+                var res = DbManager.DeleteComment(commentId);
+                if (res.Success)
+                {
+                    Response.Redirect("Article.aspx?id=" + Request.QueryString["id"]);
+                }
+                else
+                {
+                    InfoLabel(res.Message);
+                }
             }
         }
     }

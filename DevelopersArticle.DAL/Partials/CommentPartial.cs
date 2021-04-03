@@ -19,7 +19,7 @@ namespace DevelopersArticle.DAL
         }
         public void SoftDeleteComment(Comment comment)
         {
-            var deletedItem = Set<Comment>().Find(comment.ObjectID);
+            var deletedItem = Comments.Find(comment.ObjectID);
             deletedItem.IsDeleted = true;
             deletedItem.DeletedDate = DateTime.Now;
             deletedItem.ModifiedDate = DateTime.Now;
@@ -30,6 +30,9 @@ namespace DevelopersArticle.DAL
             var UpdatedEntity = Entry(Comment);
             UpdatedEntity.State = EntityState.Modified;
         }
-        
+        public Comment GetCommentById(int commentId)
+        {
+            return Comments.Single(c => c.IsDeleted == false && c.ObjectID == commentId);
+        }
     }
 }

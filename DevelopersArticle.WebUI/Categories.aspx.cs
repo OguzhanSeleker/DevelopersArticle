@@ -17,6 +17,7 @@ namespace DevelopersArticle.WebUI
                 if (Application["Info"] != null)
                 {
                     InfoLabel(Application["Info"].ToString());
+                    Application.Clear();
                 }
                 rptKategoriler.DataSource = DbManager.GetCategories().Data;
                 rptKategoriler.DataBind();

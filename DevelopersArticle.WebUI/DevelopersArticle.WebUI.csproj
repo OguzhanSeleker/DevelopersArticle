@@ -204,6 +204,7 @@
     <Content Include="css\ToggleMenu.css" />
     <Content Include="Default.aspx" />
     <Content Include="Developers.aspx" />
+    <Content Include="EditArticle.aspx" />
     <Content Include="Images\male_icon.jpg" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -259,6 +260,13 @@
     </Compile>
     <Compile Include="Developers.aspx.designer.cs">
       <DependentUpon>Developers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditArticle.aspx.cs">
+      <DependentUpon>EditArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditArticle.aspx.designer.cs">
+      <DependentUpon>EditArticle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
