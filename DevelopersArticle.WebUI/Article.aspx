@@ -35,6 +35,11 @@
             <div class="row">
                 <asp:Label ID="lblModifiedDate" CssClass="ml-4 mt-2 text-muted float-right d-block" runat="server" />
             </div>
+            <asp:Repeater ID="rptArtCats" runat="server">
+                <ItemTemplate>
+                    <span class="badge bg-warning text-dark ml-2"><%# Container.DataItem %></span>
+                </ItemTemplate>
+            </asp:Repeater>
 
         </div>
         <div class="card-footer">
@@ -52,6 +57,7 @@
                     <asp:Repeater ID="rptComments" runat="server" OnItemCommand="rptComments_ItemCommand">
                         <ItemTemplate>
                             <hr />
+                            
                             <%# Eval("CommentContent") %> --
                             <span class="text-primary"><%# Eval("Developer.FullName") %>.</span>
                             <span class="text-muted"><%# Eval("CreatedDate") %></span>
@@ -78,9 +84,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <asp:HiddenField ID="hfCommentId" runat="server" />
                             <div class="col">
                                 <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
                                 <asp:TextBox ID="tbEditContent" CssClass="form-control-sm w-50" runat="server" />
+                                <asp:RequiredFieldValidator ErrorMessage="*Bu alan boş bırakılamaz." Font-Size="Small" ForeColor="DarkRed" ControlToValidate="tbEditContent" runat="server" ValidationGroup="editModal" />
                             </div>
                             <div class="col">
                                 <asp:Label CssClass="form-text d-inline" Text="Yorum Sahibi :" runat="server" />
@@ -90,8 +98,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <asp:Button ID="btnSaveChanges" runat="server" CssClass="btn btn-primary" OnClick="btnSaveChanges_Click" Text="Değişiklikleri Kaydet" ValidationGroup="editModal"/>
                         </div>
                     </div>
                 </div>
@@ -103,6 +110,7 @@
                 <div class="col">
                     <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
                     <asp:TextBox ID="txtbxCommentContent" CssClass="form-control-sm w-50" runat="server" />
+                    <asp:RequiredFieldValidator ErrorMessage="*Bu alan boş bırakılamaz." Font-Size="Small" ForeColor="DarkRed"  ControlToValidate="txtbxCommentContent" runat="server" ValidationGroup="AddComment" />
                 </div>
                 <div class="col">
                     <asp:Label CssClass="form-text d-inline" Text="Yorum Sahibi :" runat="server" />
@@ -111,7 +119,7 @@
                     </asp:DropDownList>
                 </div>
                 <div class="col">
-                    <asp:Button ID="btnAddComment" Text="Ekle" CssClass="btn btn-outline-primary btn-sm" runat="server" OnClick="btnAddComment_Click" />
+                    <asp:Button ID="btnAddComment" Text="Ekle" CssClass="btn btn-outline-primary btn-sm" runat="server" OnClick="btnAddComment_Click" ValidationGroup="AddComment" />
                 </div>
             </div>
 

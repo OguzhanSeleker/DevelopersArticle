@@ -41,5 +41,7 @@ namespace DevelopersArticle.BLL.Utilities.Constants
         public static string SuccessUpdateArticle = "Yazı başarılı bir şekilde güncellendi.";
         public static string ErrorUpdateArticle = "Yazı güncellenemedi. Hata : ";
         public static string ErrorDeleteComment = "Yorum silinemdi. Hata : ";
+        public static string SuccessUpdateComment = "Yorum Başarılı bir şekilde güncellendi. ";
+        public static string ErrorUpdateComment = "Yorum güncellenemedi. Hata : ";
     }
 }

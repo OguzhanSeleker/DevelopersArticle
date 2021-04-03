@@ -50,7 +50,7 @@
           <Property Name="DeletedDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="IsModified" Type="int" Nullable="false" />
+          <Property Name="IsModified" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DeveloperCategories">
           <Key>
@@ -241,9 +241,9 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="IsModified" Type="Boolean" Nullable="false" />
           <Property Name="ArticlePictureURL" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__Articl__4CA06362" FromRole="Articles" ToRole="Comments" />
           <NavigationProperty Name="Categories" Relationship="Self.ArticleCategories" FromRole="Articles" ToRole="Categories" />
           <NavigationProperty Name="Developer" Relationship="DevelopersArticlesModel.FK__Articles__Writer__46E78A0C" FromRole="Article" ToRole="Developer" />
+          <NavigationProperty Name="Comments" Relationship="DevelopersArticlesModel.FK__Comments__Articl__4CA06362" FromRole="Article" ToRole="Comment" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -257,34 +257,6 @@
           <NavigationProperty Name="Articles" Relationship="Self.ArticleCategories" FromRole="Categories" ToRole="Articles" />
           <NavigationProperty Name="Developers" Relationship="DevelopersArticlesModel.DeveloperCategories" FromRole="Category" ToRole="Developer" />
         </EntityType>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="ObjectID" />
-          </Key>
-          <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CommentContent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ArticleId" Type="Int32" Nullable="false" />
-          <Property Name="WriterId" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="IsModified" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.FK__Comments__Articl__4CA06362" FromRole="Comments" ToRole="Articles" />
-          <NavigationProperty Name="Developer" Relationship="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" FromRole="Comment" ToRole="Developer" />
-        </EntityType>
-        <Association Name="FK__Comments__Articl__4CA06362">
-          <End Role="Articles" Type="Self.Article" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articles">
-              <PropertyRef Name="ObjectID" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="ArticleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ArticleCategories">
           <End Role="Articles" Type="Self.Article" Multiplicity="*" />
           <End Role="Categories" Type="Self.Category" Multiplicity="*" />
@@ -292,11 +264,6 @@
         <EntityContainer Name="DevelopersArticlesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <AssociationSet Name="FK__Comments__Articl__4CA06362" Association="Self.FK__Comments__Articl__4CA06362">
-            <End Role="Articles" EntitySet="Articles" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
           <AssociationSet Name="ArticleCategories" Association="Self.ArticleCategories">
             <End Role="Articles" EntitySet="Articles" />
             <End Role="Categories" EntitySet="Categories" />
@@ -336,13 +303,18 @@
             <End Role="Developer" EntitySet="Developers" />
             <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comments__Writer__4BAC3F29" Association="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29">
-            <End Role="Developer" EntitySet="Developers" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
           <AssociationSet Name="DeveloperCategories" Association="DevelopersArticlesModel.DeveloperCategories">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Developer" EntitySet="Developers" />
+          </AssociationSet>
+          <EntitySet Name="Comments" EntityType="DevelopersArticlesModel.Comment" />
+          <AssociationSet Name="FK__Comments__Articl__4CA06362" Association="DevelopersArticlesModel.FK__Comments__Articl__4CA06362">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__Writer__4BAC3F29" Association="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29">
+            <End Role="Developer" EntitySet="Developers" />
+            <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -368,8 +340,8 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Articles" Relationship="DevelopersArticlesModel.FK__Articles__Writer__46E78A0C" FromRole="Developer" ToRole="Article" />
-          <NavigationProperty Name="Comments" Relationship="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" FromRole="Developer" ToRole="Comment" />
           <NavigationProperty Name="Categories" Relationship="DevelopersArticlesModel.DeveloperCategories" FromRole="Developer" ToRole="Category" />
+          <NavigationProperty Name="Comments" Relationship="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" FromRole="Developer" ToRole="Comment" />
         </EntityType>
         <Association Name="FK__Articles__Writer__46E78A0C">
           <End Type="DevelopersArticlesModel.Developer" Role="Developer" Multiplicity="1" />
@@ -380,6 +352,38 @@
             </Principal>
             <Dependent Role="Article">
               <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeveloperCategories">
+          <End Type="DevelopersArticlesModel.Category" Role="Category" Multiplicity="*" />
+          <End Type="DevelopersArticlesModel.Developer" Role="Developer" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentContent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="WriterId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsModified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="DevelopersArticlesModel.FK__Comments__Articl__4CA06362" FromRole="Comment" ToRole="Article" />
+          <NavigationProperty Name="Developer" Relationship="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" FromRole="Comment" ToRole="Developer" />
+        </EntityType>
+        <Association Name="FK__Comments__Articl__4CA06362">
+          <End Type="DevelopersArticlesModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="DevelopersArticlesModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ObjectID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,10 +398,6 @@
               <PropertyRef Name="WriterId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="DeveloperCategories">
-          <End Type="DevelopersArticlesModel.Category" Role="Category" Multiplicity="*" />
-          <End Type="DevelopersArticlesModel.Developer" Role="Developer" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -429,21 +429,6 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="DevelopersArticlesModel.Comment">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
-                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
-                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
-                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -500,6 +485,21 @@
               <ScalarProperty Name="ObjectID" ColumnName="CategoryId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="DevelopersArticlesModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -17,8 +17,8 @@ namespace DevelopersArticle.DAL
         public Developer()
         {
             this.Articles = new HashSet<Article>();
-            this.Comments = new HashSet<Comment>();
             this.Categories = new HashSet<Category>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int ObjectID { get; set; }
@@ -30,7 +30,7 @@ namespace DevelopersArticle.DAL
         public Nullable<System.DateTime> DeletedDate { get; set; }
     
         public virtual ICollection<Article> Articles { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

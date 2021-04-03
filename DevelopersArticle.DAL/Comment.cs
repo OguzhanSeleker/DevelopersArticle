@@ -22,7 +22,7 @@ namespace DevelopersArticle.DAL
         public Nullable<System.DateTime> DeletedDate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
         public bool IsDeleted { get; set; }
-        public int IsModified { get; set; }
+        public bool IsModified { get; set; }
     
         public virtual Article Article { get; set; }
         public virtual Developer Developer { get; set; }

@@ -1,11 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="DevelopersArticle.WebUI.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AllArticles.aspx.cs" Inherits="DevelopersArticle.WebUI.AllArticles" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 class="mt-4 ml-3 mb-2">Bir Geliştiricinin Günlükleri <i class="fa fa-smile-o" aria-hidden="true"></i></h2>
-    <asp:Label ID="lblLittleTitle" runat="server" CssClass="h5 mt-4 ml-5 mb-3" />
+    <asp:Label ID="lblLittleTitle" Text="Tüm Yazılar" runat="server" CssClass="h5 mt-4 ml-5 mb-3" />
     
     <div class="row row-cols-5">
         <asp:Repeater ID="rptArticleList" runat="server">
@@ -30,5 +28,4 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-
 </asp:Content>

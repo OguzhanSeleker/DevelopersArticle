@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddArticle.aspx" />
+    <Content Include="AllArticles.aspx" />
     <Content Include="Article.aspx" />
     <Content Include="Categories.aspx" />
     <Content Include="css\AddArticleCss.css" />
@@ -229,6 +230,13 @@
     </Compile>
     <Compile Include="AddArticle.aspx.designer.cs">
       <DependentUpon>AddArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllArticles.aspx.cs">
+      <DependentUpon>AllArticles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllArticles.aspx.designer.cs">
+      <DependentUpon>AllArticles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Article.aspx.cs">
       <DependentUpon>Article.aspx</DependentUpon>

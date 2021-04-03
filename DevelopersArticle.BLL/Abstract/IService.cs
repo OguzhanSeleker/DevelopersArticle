@@ -30,5 +30,6 @@ namespace DevelopersArticle.BLL
         IResult UpdateArticle(int articleId, string ArticleTitle, byte[] ImageBytes, string ArticleContent, List<int> CategoryIds, int writerID);
         IDataResult<Comment> GetCommentById(int commentId);
         IResult DeleteComment(int commentId);
+        IResult UpdateComment(int commentId, string commentContent, int writerId);
     }
 }

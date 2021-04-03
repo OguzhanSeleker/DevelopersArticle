@@ -7,6 +7,7 @@ namespace DevelopersArticle.WebUI
 {
     public partial class Article : BasePage
     {
+        private int commentId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,7 +23,8 @@ namespace DevelopersArticle.WebUI
                         lblContent.Text = article.Data.ArticleContent;
                         lblWriterFullName.Text = article.Data.Developer.FullName;
                         lblModifiedDate.Text = article.Data.ModifiedDate.ToString();
-
+                        rptArtCats.DataSource = article.Data.Categories.Select(c => c.CategoryName);
+                        rptArtCats.DataBind();
                         rptComments.DataSource = article.Data.Comments.Where(c => c.IsDeleted == false).OrderBy(c => c.ModifiedDate).ToList();
                         rptComments.DataBind();
 
@@ -82,7 +84,7 @@ namespace DevelopersArticle.WebUI
 
         protected void rptComments_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
         {
-            int commentId = int.Parse((string)(e.CommandArgument));
+            commentId = int.Parse((string)(e.CommandArgument));
 
             if (e.CommandName == "Edit")
             {
@@ -90,12 +92,14 @@ namespace DevelopersArticle.WebUI
                 if (res.Success)
                 {
                     tbEditContent.Text = res.Data.CommentContent;
+                    hfCommentId.Value = res.Data.ObjectID.ToString();
                     var dev = DbManager.GetDevelopers();
                     if (dev.Success)
                     {
                         ddlModalWriter.DataSource = dev.Data.Select(c => new { c.FullName, c.ObjectID });
                         ddlModalWriter.DataBind();
                         ddlModalWriter.SelectedValue = res.Data.Developer.ObjectID.ToString();
+                       
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openEditCommentModal();", true);
                     }
                 }
@@ -111,6 +115,21 @@ namespace DevelopersArticle.WebUI
                 {
                     InfoLabel(res.Message);
                 }
+            }
+        }
+
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            int commentId = int.Parse(hfCommentId.Value);
+            var res = DbManager.UpdateComment(commentId, tbEditContent.Text, int.Parse(ddlModalWriter.SelectedValue));
+            if (res.Success)
+            {
+                Application["Info"] = res.Message;
+                Response.Redirect("Article.aspx?id=" + hfArticleId.Value);
+            }
+            else
+            {
+                InfoLabel(res.Message);
             }
         }
     }

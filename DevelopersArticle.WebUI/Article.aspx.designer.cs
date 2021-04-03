@@ -96,6 +96,15 @@ namespace DevelopersArticle.WebUI
         protected global::System.Web.UI.WebControls.Label lblModifiedDate;
 
         /// <summary>
+        /// rptArtCats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptArtCats;
+
+        /// <summary>
         /// btnShowCommentAdd control.
         /// </summary>
         /// <remarks>
@@ -114,6 +123,15 @@ namespace DevelopersArticle.WebUI
         protected global::System.Web.UI.WebControls.Repeater rptComments;
 
         /// <summary>
+        /// hfCommentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCommentId;
+
+        /// <summary>
         /// tbEditContent control.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace DevelopersArticle.WebUI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlModalWriter;
+
+        /// <summary>
+        /// btnSaveChanges control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveChanges;
 
         /// <summary>
         /// txtbxCommentContent control.

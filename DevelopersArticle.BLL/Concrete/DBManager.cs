@@ -437,5 +437,25 @@ namespace DevelopersArticle.BLL.Concrete
                 return new ErrorResult(Messages.ErrorDeleteComment + e.Message);
             }
         }
+
+        public IResult UpdateComment(int commentId, string commentContent, int writerId)
+        {
+            try
+            {
+                Comment comment = DbInstance.GetCommentById(commentId);
+                comment.CommentContent = commentContent;
+                comment.WriterId = writerId;
+                comment.IsModified = true;
+                comment.ModifiedDate = DateTime.Now;
+                DbInstance.UpdateComment(comment);
+                DbInstance.SaveChanges();
+                return new SuccessResult(Messages.SuccessUpdateComment);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(Messages.ErrorUpdateComment + e.Message);
+            }
+            
+        }
     }
 }

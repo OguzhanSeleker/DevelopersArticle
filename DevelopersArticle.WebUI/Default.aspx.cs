@@ -22,7 +22,8 @@ namespace DevelopersArticle.WebUI
 
                 if (Request.QueryString["Category"] != null)
                 {
-                    var article = DbManager.GetArticlesByCategoryId(int.Parse(Request.QueryString["Category"]));
+                    var catId = int.Parse(Request.QueryString["Category"]);
+                    var article = DbManager.GetArticlesByCategoryId(catId);
                     if (article.Success)
                     {
                         if (article.Data.Count == 0)
@@ -31,7 +32,8 @@ namespace DevelopersArticle.WebUI
                         }
                         else
                         {
-                            rptArticleList.DataSource = article.Data;
+                            lblLittleTitle.Text = DbManager.GetCategoryById(catId).Data.CategoryName + " Kategorisine Ait Yazılar";
+                            rptArticleList.DataSource = article.Data.OrderByDescending(c => c.ModifiedDate);
                             rptArticleList.DataBind();
                         }
                     }
@@ -41,7 +43,8 @@ namespace DevelopersArticle.WebUI
                     var articles = DbManager.GetAllArticles();
                     if (articles.Success)
                     {
-                        rptArticleList.DataSource = articles.Data;
+                        lblLittleTitle.Text = "Son Bir Haftada Oluşturulan Yazılar";
+                        rptArticleList.DataSource = articles.Data.Where(c => c.ModifiedDate > DateTime.Now.AddDays(-7)).ToList().OrderByDescending(a => a.ModifiedDate);
                         rptArticleList.DataBind();
                     }
                 }

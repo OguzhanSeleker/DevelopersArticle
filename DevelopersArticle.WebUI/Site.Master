@@ -35,7 +35,7 @@
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="../" class="list-group-item list-group-item-action bg-light">Anasayfa</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Tüm yazılar</a>
+                    <a href="../AllArticles.aspx" class="list-group-item list-group-item-action bg-light">Tüm yazılar</a>
                     <a href="../Developers.aspx" class="list-group-item list-group-item-action bg-light">Yazarlar</a>
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-custom">
