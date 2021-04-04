@@ -28,7 +28,7 @@
         <div class="d-flex" id="wrapper">
 
             <!-- Sidebar -->
-            <div class="bg-light border-right h-25" id="sidebar-wrapper" style="max-width: 12%;">
+            <div class="bg-light border-right" id="sidebar-wrapper" style="max-width: 12%;">
                 <div class="sidebar-heading">
                     <asp:Image ID="ImgSidebarHeader" runat="server" CssClass="center rounded" />
                     <%--<img src="Images/male_icon.jpg" alt="" class="center rounded" />--%>
