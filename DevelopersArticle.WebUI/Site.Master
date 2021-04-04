@@ -16,6 +16,9 @@
     <link href="../css/select2/css/select2.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        html, body{margin: 0; padding: 0; height: 100%;}
+    </style>
 </head>
 
 <body>
@@ -28,7 +31,7 @@
         <div class="d-flex" id="wrapper">
 
             <!-- Sidebar -->
-            <div class="bg-light border-right h-25" id="sidebar-wrapper" style="max-width: 12%;">
+            <div class="bg-light border-right" id="sidebar-wrapper" style="max-width: 12%;">
                 <div class="sidebar-heading">
                     <asp:Image ID="ImgSidebarHeader" runat="server" CssClass="center rounded" />
                     <%--<img src="Images/male_icon.jpg" alt="" class="center rounded" />--%>
