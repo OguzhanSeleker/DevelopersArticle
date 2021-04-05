@@ -13,7 +13,7 @@
                         <asp:Image ImageUrl='<%# Eval("ImageUrl") %>' Style="height:10rem;" CssClass="center" runat="server" />
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body" style="height: 16rem;">
                         <h5 class="card-title"><%# Eval("ArticleTitle") %></h5>
                         <p class="card-text"><%# Eval("MakaleOzet") %></p>
                         <a href="..\Article.aspx?id=<%# Eval("ObjectID") %>" class="float-right mb-2"> Yazının Devamı <i class="fa fa-arrow-right" aria-hidden="true"></i></a>

@@ -76,20 +76,20 @@
                         <td>
                             <asp:Repeater ID="rptDeveloperCategories" runat="server">
                                 <ItemTemplate>
-                                    <%# Container.DataItem  %>
+                                    <%# Container.DataItem %>,
                                 </ItemTemplate>
                             </asp:Repeater>
                         </td>
                         <td>
                             <asp:Repeater ID="rptDeveloperArticles" runat="server">
                                 <ItemTemplate>
-                                    <%#  Container.DataItem %>
+                                    <%#  Container.DataItem %>,
                                 </ItemTemplate>
                             </asp:Repeater>
                         </td>
                         <td>
-                            <asp:LinkButton ID="lnkbtn_Edit" runat="server" type="button" class="btn btn-outline-primary d-inline float-left" CommandArgument='<%# Eval("ObjectID") %>' CommandName="Edit" Text="Düzenle" OnClientClick='openModal();' />
-                            <asp:Button Text="Sil" ID="btnYazarSil" CommandName="Delete" CausesValidation="false" CssClass="btn btn-outline-danger d-inline float-right" runat="server" CommandArgument='<%# Eval("ObjectID") %>' />
+                            <asp:LinkButton ID="lnkbtn_Edit" runat="server" type="button" class="btn btn-outline-primary d-inline" CommandArgument='<%# Eval("ObjectID") %>' CommandName="Edit" Text="Düzenle" OnClientClick='openModal();' />
+                            <asp:Button Text="Sil" ID="btnYazarSil" CommandName="Delete" CausesValidation="false" CssClass="btn btn-outline-danger d-inline" runat="server" CommandArgument='<%# Eval("ObjectID") %>' />
                         </td>
                     </tr>
                 </ItemTemplate>
