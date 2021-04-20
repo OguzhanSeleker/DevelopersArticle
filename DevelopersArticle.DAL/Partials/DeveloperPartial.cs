@@ -44,7 +44,8 @@ namespace DevelopersArticle.DAL
         }
         public List<Developer> GetDevelopersByCategory(int categoryId)
         {
-            return Categories.Where(d => d.ObjectID == categoryId).SelectMany(d => d.Developers).ToList();
+            var devs = Categories.Where(d => d.ObjectID == categoryId).SelectMany(d => d.Developers).ToList();
+            return devs.Where(d => d.IsDeleted == false).ToList();
         }
 
         public List<Category> GetDeveloperCategoriesbyDevId(int developerId)

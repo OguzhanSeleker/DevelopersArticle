@@ -16,8 +16,8 @@ namespace DevelopersArticle.DAL
     {
         public Article()
         {
-            this.Categories = new HashSet<Category>();
             this.Comments = new HashSet<Comment>();
+            this.Categories = new HashSet<Category>();
         }
     
         public int ObjectID { get; set; }
@@ -31,8 +31,8 @@ namespace DevelopersArticle.DAL
         public bool IsModified { get; set; }
         public byte[] ArticlePictureURL { get; set; }
     
-        public virtual ICollection<Category> Categories { get; set; }
         public virtual Developer Developer { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

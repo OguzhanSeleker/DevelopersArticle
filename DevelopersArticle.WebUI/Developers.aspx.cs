@@ -160,7 +160,7 @@ namespace DevelopersArticle.WebUI
             }
             else
             {
-                if (dev.Data.Articles.Count == 0)
+                if (dev.Data.Articles.Where(a => a.IsDeleted == false).ToList().Count == 0)
                 {
                     DeleteDeveloper(devID);
                 }

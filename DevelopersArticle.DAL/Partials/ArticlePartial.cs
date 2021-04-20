@@ -22,7 +22,7 @@ namespace DevelopersArticle.DAL
             get
             {
                 string ozet = "";
-                var listOzet = ArticleContent.Split(' ').Take(25).ToList();
+                var listOzet = ArticleContent.Split(' ').Take(22).ToList();
                 foreach (var word in listOzet)
                 {
                     ozet += word + " ";

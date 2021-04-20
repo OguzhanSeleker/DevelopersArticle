@@ -43,5 +43,6 @@ namespace DevelopersArticle.BLL.Utilities.Constants
         public static string ErrorDeleteComment = "Yorum silinemdi. Hata : ";
         public static string SuccessUpdateComment = "Yorum Başarılı bir şekilde güncellendi. ";
         public static string ErrorUpdateComment = "Yorum güncellenemedi. Hata : ";
+        public static string WriterNotInCategory = "Yazar seçilen bütün kategorilerde yazı yazıyor olması gerekli.";
     }
 }

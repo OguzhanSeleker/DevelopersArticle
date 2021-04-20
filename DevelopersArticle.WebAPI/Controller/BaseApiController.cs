@@ -1,18 +1,16 @@
 ﻿using DevelopersArticle.BLL;
 using DevelopersArticle.BLL.Concrete;
-using DevelopersArticle.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.Http;
 
-namespace DevelopersArticle.WebUI
+namespace DevelopersArticle.WebAPI.Controller
 {
-    public class BasePage : Page
+    public class BaseApiController : ApiController
     {
-        private IService dbManager;
+        IService dbManager;
         public IService DbManager
         {
             get
@@ -23,14 +21,6 @@ namespace DevelopersArticle.WebUI
                 }
                 return dbManager;
             }
-        }
-
-
-        public void InfoLabel(string infoText)
-        {
-            Label LblInfo = (Label)Page.Master.FindControl("LblInfo");
-            LblInfo.Visible = true;
-            LblInfo.Text = infoText;
         }
 
     }

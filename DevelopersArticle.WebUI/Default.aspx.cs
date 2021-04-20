@@ -44,6 +44,7 @@ namespace DevelopersArticle.WebUI
                     if (articles.Success)
                     {
                         lblLittleTitle.Text = "Son Bir Haftada Oluşturulan Yazılar";
+                        var datas = articles.Data.Where(c => c.ModifiedDate > DateTime.Now.AddDays(-7)).ToList().OrderByDescending(a => a.ModifiedDate).ToList();
                         rptArticleList.DataSource = articles.Data.Where(c => c.ModifiedDate > DateTime.Now.AddDays(-7)).ToList().OrderByDescending(a => a.ModifiedDate);
                         rptArticleList.DataBind();
                     }

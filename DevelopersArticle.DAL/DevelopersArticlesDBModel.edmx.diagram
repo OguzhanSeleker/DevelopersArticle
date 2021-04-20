@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b0723b13dc6e4970ae1e0da4179ccc6b" Name="Diagram1">
-        <EntityTypeShape EntityType="DevelopersArticlesModel.Article" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DevelopersArticlesModel.Category" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+      <Diagram DiagramId="4d417232ae04470a9119a888e4aa5184" Name="Diagram1">
+        <EntityTypeShape EntityType="DevelopersArticlesModel.Article" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevelopersArticlesModel.Category" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevelopersArticlesModel.Comment" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevelopersArticlesModel.Developer" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="DevelopersArticlesModel.FK__Articles__Writer__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DevelopersArticlesModel.FK__Comments__Articl__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="DevelopersArticlesModel.ArticleCategories" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DevelopersArticlesModel.Developer" Width="1.5" PointX="0.75" PointY="3.125" />
-        <AssociationConnector Association="DevelopersArticlesModel.FK__Articles__Writer__46E78A0C" />
-        <AssociationConnector Association="DevelopersArticlesModel.DeveloperCategories" />
-        <EntityTypeShape EntityType="DevelopersArticlesModel.Comment" Width="1.5" PointX="7.5" PointY="3.375" />
-        <AssociationConnector Association="DevelopersArticlesModel.FK__Comments__Articl__4CA06362" />
-        <AssociationConnector Association="DevelopersArticlesModel.FK__Comments__Writer__4BAC3F29" />
+        <AssociationConnector Association="DevelopersArticlesModel.DeveloperCategories" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

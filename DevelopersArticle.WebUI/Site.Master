@@ -154,6 +154,7 @@
 
             function openModal() {
                 $('#EditModal').modal('show');
+                return false;
             }
             function openDevModal() {
                 $('#EditModal2').modal('show');

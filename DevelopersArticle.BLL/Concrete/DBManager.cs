@@ -14,11 +14,18 @@ namespace DevelopersArticle.BLL.Concrete
         public IResult AddArticle(string ArticleTitle, byte[] ImageBytes, string ArticleContent, List<int> CategoryIds, int writerID)
         {
             List<Category> categories = new List<Category>();
-
             foreach (var categoryId in CategoryIds)
             {
-                categories.Add(DbInstance.GetCategoryById(categoryId));
+                var category = DbInstance.GetCategoryById(categoryId);
+                bool sonuc = category.Developers.Any(a => a.ObjectID == writerID);
+                if (!sonuc)
+                {
+                    return new ErrorResult(Messages.WriterNotInCategory);
+                }
+
+                categories.Add(category);
             }
+            
 
             Article article = new Article
             {
@@ -123,7 +130,8 @@ namespace DevelopersArticle.BLL.Concrete
         {
             try
             {
-                return new SuccessDataResult<List<Category>>(DbInstance.GetAllCategories());
+                var test = DbInstance.GetAllCategories();
+                return new SuccessDataResult<List<Category>>(test);
             }
             catch (Exception)
             {

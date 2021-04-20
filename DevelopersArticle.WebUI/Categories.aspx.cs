@@ -88,7 +88,7 @@ namespace DevelopersArticle.WebUI
         private void KategoriSil(int categoryId)
         {
             var deleteCategory = DbManager.GetCategoryById(categoryId);
-            if (deleteCategory.Data.Developers.Count != 0 || deleteCategory.Data.Articles.Count != 0)
+            if (deleteCategory.Data.Developers.Where(d => d.IsDeleted == false).ToList().Count != 0 || deleteCategory.Data.Articles.Where(a => a.IsDeleted == false).ToList().Count != 0)
             {
                 InfoLabel(Messages.ErrorDeleteCategory);
 
@@ -119,8 +119,8 @@ namespace DevelopersArticle.WebUI
         {
             txtEditModal.Text = DbManager.GetCategoryById(categoryId).Data.CategoryName;
             hfCategoryId.Value = categoryId.ToString();
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-        }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
         else
         {
             KategoriSil(categoryId);

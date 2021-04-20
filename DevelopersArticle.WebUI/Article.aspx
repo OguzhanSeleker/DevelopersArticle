@@ -24,7 +24,6 @@
                     <i class="fas fa-edit fa-lg"></i>
                     </asp:HyperLink>
                 </div>
-
             </div>
 
             <asp:Label ID="lblContent" CssClass="mt-3 ml-5 mr-3" Font-Size="Large" runat="server" />
@@ -87,7 +86,7 @@
                             <asp:HiddenField ID="hfCommentId" runat="server" />
                             <div class="col">
                                 <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
-                                <asp:TextBox ID="tbEditContent" CssClass="form-control-sm w-50" runat="server" />
+                                <asp:TextBox ID="tbEditContent" CssClass="form-control-sm w-75" TextMode="MultiLine" runat="server" />
                                 <asp:RequiredFieldValidator ErrorMessage="*Bu alan boş bırakılamaz." Font-Size="Small" ForeColor="DarkRed" ControlToValidate="tbEditContent" runat="server" ValidationGroup="editModal" />
                             </div>
                             <div class="col">
@@ -109,7 +108,7 @@
                 <hr />
                 <div class="col">
                     <asp:Label CssClass="form-text d-inline" Text="Yorum :" runat="server" />
-                    <asp:TextBox ID="txtbxCommentContent" CssClass="form-control-sm w-50" runat="server" />
+                    <asp:TextBox ID="txtbxCommentContent" CssClass="form-control-sm w-50" TextMode="MultiLine" runat="server" />
                     <asp:RequiredFieldValidator ErrorMessage="*Bu alan boş bırakılamaz." Font-Size="Small" ForeColor="DarkRed"  ControlToValidate="txtbxCommentContent" runat="server" ValidationGroup="AddComment" />
                 </div>
                 <div class="col">
